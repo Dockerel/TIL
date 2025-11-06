@@ -10,6 +10,7 @@
 
 #### JAVA
  - [JVM과 컴파일 과정](https://github.com/Dockerel/TIL/blob/main/Java/JVM%EA%B3%BC%20%EC%BB%B4%ED%8C%8C%EC%9D%BC%20%EA%B3%BC%EC%A0%95.md)
+ - [Call by value와 Call by reference](https://github.com/Dockerel/TIL/blob/main/Java/Call%20by%20value%EC%99%80%20Call%20by%20reference.md)
 
 ---
 
