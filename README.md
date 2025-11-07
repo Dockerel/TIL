@@ -5,6 +5,7 @@
 #### Backend
 - [JWT 특징과 주의 사항](https://github.com/Dockerel/TIL/blob/main/Backend/JWT%20%ED%8A%B9%EC%A7%95%EA%B3%BC%20%EC%A3%BC%EC%9D%98%20%EC%82%AC%ED%95%AD.md)
 - [단일 장애 지점](https://github.com/Dockerel/TIL/blob/main/Backend/%EB%8B%A8%EC%9D%BC%20%EC%9E%A5%EC%95%A0%20%EC%A7%80%EC%A0%90.md)
+- [정적 IP 주소 할당 방식과 동적 IP 주소 할당 방식의 차이점](https://github.com/Dockerel/TIL/blob/main/Backend/%EC%A0%95%EC%A0%81%20IP%20%EC%A3%BC%EC%86%8C%20%ED%95%A0%EB%8B%B9%20%EB%B0%A9%EC%8B%9D%EA%B3%BC%20%EB%8F%99%EC%A0%81%20IP%20%EC%A3%BC%EC%86%8C%20%ED%95%A0%EB%8B%B9%20%EB%B0%A9%EC%8B%9D%EC%9D%98%20%EC%B0%A8%EC%9D%B4%EC%A0%90.md)
 
 ---
 
