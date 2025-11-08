@@ -6,6 +6,7 @@
 - [JWT 특징과 주의 사항](https://github.com/Dockerel/TIL/blob/main/Backend/JWT%20%ED%8A%B9%EC%A7%95%EA%B3%BC%20%EC%A3%BC%EC%9D%98%20%EC%82%AC%ED%95%AD.md)
 - [단일 장애 지점](https://github.com/Dockerel/TIL/blob/main/Backend/%EB%8B%A8%EC%9D%BC%20%EC%9E%A5%EC%95%A0%20%EC%A7%80%EC%A0%90.md)
 - [정적 IP 주소 할당 방식과 동적 IP 주소 할당 방식의 차이점](https://github.com/Dockerel/TIL/blob/main/Backend/%EC%A0%95%EC%A0%81%20IP%20%EC%A3%BC%EC%86%8C%20%ED%95%A0%EB%8B%B9%20%EB%B0%A9%EC%8B%9D%EA%B3%BC%20%EB%8F%99%EC%A0%81%20IP%20%EC%A3%BC%EC%86%8C%20%ED%95%A0%EB%8B%B9%20%EB%B0%A9%EC%8B%9D%EC%9D%98%20%EC%B0%A8%EC%9D%B4%EC%A0%90.md)
+- [트랜잭셔널 아웃박스 패턴](https://github.com/Dockerel/TIL/blob/main/Backend/%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%94%EB%84%90%20%EC%95%84%EC%9B%83%EB%B0%95%EC%8A%A4%20%ED%8C%A8%ED%84%B4.md)
 
 ---
 
@@ -13,6 +14,7 @@
  - [JVM과 컴파일 과정](https://github.com/Dockerel/TIL/blob/main/Java/JVM%EA%B3%BC%20%EC%BB%B4%ED%8C%8C%EC%9D%BC%20%EA%B3%BC%EC%A0%95.md)
  - [Call by value와 Call by reference](https://github.com/Dockerel/TIL/blob/main/Java/Call%20by%20value%EC%99%80%20Call%20by%20reference.md)
  - [Primitive type과 Reference Type](https://github.com/Dockerel/TIL/blob/main/Java/Primitive%20type%EA%B3%BC%20Reference%20Type.md)
+ - [직렬화와 역직렬화](https://github.com/Dockerel/TIL/blob/main/Java/%EC%A7%81%EB%A0%AC%ED%99%94%EC%99%80%20%EC%97%AD%EC%A7%81%EB%A0%AC%ED%99%94.md)
 
 ---
 
