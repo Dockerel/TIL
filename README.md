@@ -27,3 +27,23 @@
 - [프로그램의 컴파일 과정](https://github.com/Dockerel/TIL/blob/main/Operating%20System/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8%EC%9D%98%20%EC%BB%B4%ED%8C%8C%EC%9D%BC%20%EA%B3%BC%EC%A0%95.md)
 - [프로세스의 메모리 구조](https://github.com/Dockerel/TIL/blob/main/Operating%20System/%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%EC%9D%98%20%EB%A9%94%EB%AA%A8%EB%A6%AC%20%EA%B5%AC%EC%A1%B0.md)
 - [PCB와 컨텍스트 스위칭](https://github.com/Dockerel/TIL/blob/main/Operating%20System/PCB%EC%99%80%20%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8%20%EC%8A%A4%EC%9C%84%EC%B9%AD.md)
+
+---
+
+#### Domain Driven Architecture
+- [1. 도메인 모델 시작하기.md]()
+- [2. 아키텍처 개요.md]()
+- [3. 애그리거트.md]()
+- [4. 리포지터리와 모델 구현.md]()
+- [5. 스프링 데이터 JPA를 이용한 조회 기능.md]()
+- [6. 응용 서비스와 표현 영역.md]()
+- [7. 도메인 서비스.md]()
+- [8. 애그리거트 트랜잭션 관리.md]()
+
+
+
+
+
+
+
+
