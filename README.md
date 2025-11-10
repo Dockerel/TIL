@@ -16,6 +16,7 @@
  - [Call by value와 Call by reference](https://github.com/Dockerel/TIL/blob/main/Java/Call%20by%20value%EC%99%80%20Call%20by%20reference.md)
  - [Primitive type과 Reference Type](https://github.com/Dockerel/TIL/blob/main/Java/Primitive%20type%EA%B3%BC%20Reference%20Type.md)
  - [직렬화와 역직렬화](https://github.com/Dockerel/TIL/blob/main/Java/%EC%A7%81%EB%A0%AC%ED%99%94%EC%99%80%20%EC%97%AD%EC%A7%81%EB%A0%AC%ED%99%94.md)
+ - [String](https://github.com/Dockerel/TIL/blob/main/Java/String.md)
 
 ---
 
