@@ -10,6 +10,7 @@
 - [전략 패턴](https://github.com/Dockerel/TIL/blob/main/Backend/%EC%A0%84%EB%9E%B5%20%ED%8C%A8%ED%84%B4.md)
 - [스프링 트랜잭션 AOP의 동작 흐름](https://github.com/Dockerel/TIL/blob/main/Backend/%EC%8A%A4%ED%94%84%EB%A7%81%20%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98%20AOP%EC%9D%98%20%EB%8F%99%EC%9E%91%20%ED%9D%90%EB%A6%84.md)
 - [의존성 주입](https://github.com/Dockerel/TIL/blob/main/Backend/%EC%9D%98%EC%A1%B4%EC%84%B1%20%EC%A3%BC%EC%9E%85.md)
+- [CQRS 패턴](https://github.com/Dockerel/TIL/blob/main/Backend/CQRS%20%ED%8C%A8%ED%84%B4.md)
 
 ---
 
