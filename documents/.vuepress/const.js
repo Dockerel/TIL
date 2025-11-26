@@ -48,3 +48,10 @@ exports.OperatingSystemList = [
 ];
 
 exports.PSList = ["PS/펜윅트리.md"];
+
+exports.KubernetesList = [
+  "Kubernetes/1.-포드,-레플리카-셋,-디플로이먼트,-서비스.md",
+  "Kubernetes/2.-네임스페이스,-컨피그맵,-시크릿,-인그레스.md",
+  "Kubernetes/3.-pv와-pvc.md",
+  "Kubernetes/4.-ServiceAccount와-RBAC.md",
+];

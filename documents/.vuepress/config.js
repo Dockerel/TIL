@@ -36,6 +36,10 @@ module.exports = {
         title: "PS",
         children: CONST.PSList,
       },
+      {
+        title: "Kubernetes",
+        children: CONST.KubernetesList,
+      },
     ],
     nav: [
       {
