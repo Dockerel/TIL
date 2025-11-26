@@ -7,6 +7,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@main
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "yarn"
+
       - name: Vuepress deploy
         uses: jenkey2011/vuepress-deploy@1.0.1
         env:
