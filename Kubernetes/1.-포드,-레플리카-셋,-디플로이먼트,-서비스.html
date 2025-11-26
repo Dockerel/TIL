@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>1.포드, 레플리카 셋, 디플로이먼트, 서비스 | Today Dockerel Learned</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="/TIL/logo.png">
+    <meta name="description" content="Dockerel&#39;s Personal Wiki (Today I Learned)">
+    
+    <link rel="preload" href="/TIL/assets/css/0.styles.40dd5a95.css" as="style"><link rel="preload" href="/TIL/assets/js/app.03d6d295.js" as="script"><link rel="preload" href="/TIL/assets/js/2.188c950f.js" as="script"><link rel="preload" href="/TIL/assets/js/1.a1e51968.js" as="script"><link rel="preload" href="/TIL/assets/js/58.6a53af05.js" as="script"><link rel="prefetch" href="/TIL/assets/js/10.e6f03b60.js"><link rel="prefetch" href="/TIL/assets/js/11.0fba4bf3.js"><link rel="prefetch" href="/TIL/assets/js/12.181bd7bc.js"><link rel="prefetch" href="/TIL/assets/js/13.c5707e1c.js"><link rel="prefetch" href="/TIL/assets/js/14.b086a433.js"><link rel="prefetch" href="/TIL/assets/js/15.3e75d743.js"><link rel="prefetch" href="/TIL/assets/js/16.a2bc07a8.js"><link rel="prefetch" href="/TIL/assets/js/17.57a11db5.js"><link rel="prefetch" href="/TIL/assets/js/18.c240daa0.js"><link rel="prefetch" href="/TIL/assets/js/19.60958448.js"><link rel="prefetch" href="/TIL/assets/js/20.4352d5d9.js"><link rel="prefetch" href="/TIL/assets/js/21.837c5fe2.js"><link rel="prefetch" href="/TIL/assets/js/22.664a6cc8.js"><link rel="prefetch" href="/TIL/assets/js/23.5ae71a00.js"><link rel="prefetch" href="/TIL/assets/js/24.2996a8ee.js"><link rel="prefetch" href="/TIL/assets/js/25.1aeaac43.js"><link rel="prefetch" href="/TIL/assets/js/26.5310ec0f.js"><link rel="prefetch" href="/TIL/assets/js/27.e3f52818.js"><link rel="prefetch" href="/TIL/assets/js/28.2515c2b1.js"><link rel="prefetch" href="/TIL/assets/js/29.9002df2d.js"><link rel="prefetch" href="/TIL/assets/js/3.e9de9cb1.js"><link rel="prefetch" href="/TIL/assets/js/30.428c0e45.js"><link rel="prefetch" href="/TIL/assets/js/31.f565852e.js"><link rel="prefetch" href="/TIL/assets/js/32.5fd280ec.js"><link rel="prefetch" href="/TIL/assets/js/33.27f9c496.js"><link rel="prefetch" href="/TIL/assets/js/34.b322d741.js"><link rel="prefetch" href="/TIL/assets/js/35.4f98b8f2.js"><link rel="prefetch" href="/TIL/assets/js/36.1a4f3733.js"><link rel="prefetch" href="/TIL/assets/js/37.01bb938e.js"><link rel="prefetch" href="/TIL/assets/js/38.d9d1aab7.js"><link rel="prefetch" href="/TIL/assets/js/39.ad7ca9bd.js"><link rel="prefetch" href="/TIL/assets/js/4.c5b6f970.js"><link rel="prefetch" href="/TIL/assets/js/40.c6e43dac.js"><link rel="prefetch" href="/TIL/assets/js/41.3e66a26f.js"><link rel="prefetch" href="/TIL/assets/js/42.18ee1cc7.js"><link rel="prefetch" href="/TIL/assets/js/43.1edd0df6.js"><link rel="prefetch" href="/TIL/assets/js/44.e6f39ac7.js"><link rel="prefetch" href="/TIL/assets/js/45.4dd98a80.js"><link rel="prefetch" href="/TIL/assets/js/46.620194e5.js"><link rel="prefetch" href="/TIL/assets/js/47.f73410d3.js"><link rel="prefetch" href="/TIL/assets/js/48.8c093934.js"><link rel="prefetch" href="/TIL/assets/js/49.2f79b75b.js"><link rel="prefetch" href="/TIL/assets/js/5.5e20f558.js"><link rel="prefetch" href="/TIL/assets/js/50.8b7a79e6.js"><link rel="prefetch" href="/TIL/assets/js/51.571f5bab.js"><link rel="prefetch" href="/TIL/assets/js/52.59db2f99.js"><link rel="prefetch" href="/TIL/assets/js/53.8075a697.js"><link rel="prefetch" href="/TIL/assets/js/54.fc24fd75.js"><link rel="prefetch" href="/TIL/assets/js/55.0d77b7e9.js"><link rel="prefetch" href="/TIL/assets/js/56.c82aa540.js"><link rel="prefetch" href="/TIL/assets/js/57.593720b1.js"><link rel="prefetch" href="/TIL/assets/js/59.940b575a.js"><link rel="prefetch" href="/TIL/assets/js/6.e8a6e3a8.js"><link rel="prefetch" href="/TIL/assets/js/60.1b7ad5a7.js"><link rel="prefetch" href="/TIL/assets/js/61.6f125e72.js"><link rel="prefetch" href="/TIL/assets/js/62.c8d7beea.js"><link rel="prefetch" href="/TIL/assets/js/63.f4fe3d71.js"><link rel="prefetch" href="/TIL/assets/js/64.1bdad2d3.js"><link rel="prefetch" href="/TIL/assets/js/65.3514a6bb.js"><link rel="prefetch" href="/TIL/assets/js/7.7fea5211.js"><link rel="prefetch" href="/TIL/assets/js/vendors~docsearch.68e379d9.js">
+    <link rel="stylesheet" href="/TIL/assets/css/0.styles.40dd5a95.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/TIL/" class="home-link router-link-active"><!----> <span class="site-name">Today Dockerel Learned</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="https://github.com/Dockerel/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://dockerel.tistory.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Blog
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="https://github.com/Dockerel/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://dockerel.tistory.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Blog
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Backend</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>DomainDrivenArchitecture</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Java</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>OperatingSystem</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>PS</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Kubernetes</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/TIL/Kubernetes/1.-포드,-레플리카-셋,-디플로이먼트,-서비스.html" class="active sidebar-link">1.포드, 레플리카 셋, 디플로이먼트, 서비스</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/TIL/Kubernetes/1.-포드,-레플리카-셋,-디플로이먼트,-서비스.html#개요" class="sidebar-link">개요</a></li><li class="sidebar-sub-header"><a href="/TIL/Kubernetes/1.-포드,-레플리카-셋,-디플로이먼트,-서비스.html#쿠버네티스-노드의-역할" class="sidebar-link">쿠버네티스 노드의 역할</a></li><li class="sidebar-sub-header"><a href="/TIL/Kubernetes/1.-포드,-레플리카-셋,-디플로이먼트,-서비스.html#pod-vs-docker-container" class="sidebar-link">Pod vs Docker Container</a></li><li class="sidebar-sub-header"><a href="/TIL/Kubernetes/1.-포드,-레플리카-셋,-디플로이먼트,-서비스.html#사이드카-컨테이너" class="sidebar-link">사이드카 컨테이너</a></li><li class="sidebar-sub-header"><a href="/TIL/Kubernetes/1.-포드,-레플리카-셋,-디플로이먼트,-서비스.html#레플리카-셋을-사용하는-이유" class="sidebar-link">레플리카 셋을 사용하는 이유?</a></li><li class="sidebar-sub-header"><a href="/TIL/Kubernetes/1.-포드,-레플리카-셋,-디플로이먼트,-서비스.html#디플로이먼트를-사용하는-이유" class="sidebar-link">디플로이먼트를 사용하는 이유?</a></li><li class="sidebar-sub-header"><a href="/TIL/Kubernetes/1.-포드,-레플리카-셋,-디플로이먼트,-서비스.html#서비스-종류" class="sidebar-link">서비스 종류</a></li><li class="sidebar-sub-header"><a href="/TIL/Kubernetes/1.-포드,-레플리카-셋,-디플로이먼트,-서비스.html#clusterip" class="sidebar-link">ClusterIP</a></li><li class="sidebar-sub-header"><a href="/TIL/Kubernetes/1.-포드,-레플리카-셋,-디플로이먼트,-서비스.html#nodeport" class="sidebar-link">NodePort</a></li></ul></li><li><a href="/TIL/Kubernetes/2.-네임스페이스,-컨피그맵,-시크릿,-인그레스.html" class="sidebar-link">2. 네임스페이스, 컨피그맵, 시크릿, 인그레스</a></li><li><a href="/TIL/Kubernetes/3.-pv와-pvc.html" class="sidebar-link">3. PV와 PVC</a></li><li><a href="/TIL/Kubernetes/4.-ServiceAccount와-RBAC.html" class="sidebar-link">4. ServiceAccount와 RBAC</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="_1-포드-레플리카-셋-디플로이먼트-서비스"><a href="#_1-포드-레플리카-셋-디플로이먼트-서비스" class="header-anchor">#</a> 1.포드, 레플리카 셋, 디플로이먼트, 서비스</h1> <h2 id="개요"><a href="#개요" class="header-anchor">#</a> 개요</h2> <ul><li>컨테이너 오케스트레이션 도구</li> <li>서버 자원 클러스터링, MSA 구조의 컨테이너 배포, 페일오버 처리 등</li> <li>컨테이너 기반의 클라우드를 운영할 때 필요한 기능과 컴포넌트 커스터마이징 가능
+<ul><li>(e.g. PV, 장애 복구, 스케줄링, 오토 스케일링 등)</li></ul></li> <li>여러 개의 노드로 구성됨(마스터, 워커)</li></ul> <h2 id="쿠버네티스-노드의-역할"><a href="#쿠버네티스-노드의-역할" class="header-anchor">#</a> 쿠버네티스 노드의 역할</h2> <ul><li>마스터 : 쿠버네티스가 제대로 동작할 수 있게 클러스터 관리하는 역할</li> <li>워커 : 애플리케이션 컨테이너 생성</li></ul> <h1 id="pod"><a href="#pod" class="header-anchor">#</a> Pod</h1> <ul><li>컨테이너 애플리케이션의 기본 단위</li> <li>1개 이상의 컨테이너로 구성된 컨테이너의 집합</li></ul> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token comment"># nginx-pod.yaml</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> my<span class="token punctuation">-</span>nginx<span class="token punctuation">-</span>pod
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> my<span class="token punctuation">-</span>nginx<span class="token punctuation">-</span>container
+      <span class="token key atrule">image</span><span class="token punctuation">:</span> nginx<span class="token punctuation">:</span>latest
+      <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">containerPort</span><span class="token punctuation">:</span> <span class="token number">80</span>
+          <span class="token key atrule">protocol</span><span class="token punctuation">:</span> TCP
+</code></pre></div><ul><li><code>kubectl apply -f</code> 명령어로 쿠버네티스에 생성 가능</li> <li><code>kubectl describe</code> 명령어로 리소스 정보를 볼 수 있음</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code>$ kubectl describe pods my-nginx-pod
+Name:             my-nginx-pod
+Namespace:        default
+Priority:         <span class="token number">0</span>
+Service Account:  default
+Node:             rpi4b/192.168.0.7
+Start Time:       Fri, <span class="token number">10</span> Oct <span class="token number">2025</span> <span class="token number">12</span>:38:38 +0900
+Labels:           <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+Annotations:      <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+Status:           Running
+IP:               <span class="token number">10.42</span>.0.129 <span class="token comment"># 클러스터 내부에서 접속가능한 IP</span>
+IPs:
+  IP:  <span class="token number">10.42</span>.0.129
+Containers:
+  my-nginx-container:
+    <span class="token punctuation">..</span>.
+</code></pre></div><ul><li><code>kubectl logs</code>로 로그 확인 가능</li> <li><code>kubectl delete -f</code> 명령어로 쿠버네티스 오브젝트 삭제 가능</li></ul> <h2 id="pod-vs-docker-container"><a href="#pod-vs-docker-container" class="header-anchor">#</a> Pod vs Docker Container</h2> <ul><li>쿠버네티스가 'Pod'라는 새로운 개념을 도입한 이유는 <strong>리눅스 네임스페이스</strong>를 공유하는 여러 컨테이너를 추상화된 집합으로 사용하기 위함</li> <li>하나의 포드는 하나의 완전한 애플리케이션으로써 만들어져야 함
+<ul><li>nginx 컨테이너 1개 (o)</li> <li>nginx 컨테이너 2개 (x : nginx 컨테이너는 그 자체만으로 완전한 애플리케이션이기 때문)</li> <li>nginx 컨테이너 + 로그 수집 컨테이너 (o : 주 컨테이너에 대해 기능 확장을 위한 <strong>사이드카 컨테이너</strong>가 포함되어야 할 수 있음)</li></ul></li></ul> <h2 id="사이드카-컨테이너"><a href="#사이드카-컨테이너" class="header-anchor">#</a> 사이드카 컨테이너</h2> <ul><li>포드에 정의된 부가적인 컨테이너</li> <li>주 컨테이너에 대해 기능 확장을 위한 컨테이너</li> <li>한 포드 내의 다른 컨테이너와 네트워크 환경 등을 공유</li></ul> <h1 id="replica-set"><a href="#replica-set" class="header-anchor">#</a> Replica Set</h1> <ul><li>일정 개수의 포드를 유지하는 컨트롤러</li></ul> <h2 id="레플리카-셋을-사용하는-이유"><a href="#레플리카-셋을-사용하는-이유" class="header-anchor">#</a> 레플리카 셋을 사용하는 이유?</h2> <ul><li>정해진 수의 동일한 포드가 항상 실행되도록 관리
+<ul><li>포드만 사용한다면 원하는 컨테이너 개수만큼 직접 생성해줘야 함</li></ul></li> <li>노드 장애 등의 이유로 포드를 사용할 수 없다면 다른 노드에서 포드 다시 실행 * 포드만 사용한다면 사용 불가능한 상태로 남아있음
+→ 결국 동일한 포드를 안정적으로 여러 개 실행하고 장애가 생기더라도 정해진 포드 개수를 유지하기 위함</li></ul> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token comment"># ---레플리카 셋 정의---</span>
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apps/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> ReplicaSet
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> replicaset<span class="token punctuation">-</span>nginx
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">3</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">matchLabels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">app</span><span class="token punctuation">:</span> my<span class="token punctuation">-</span>nginx<span class="token punctuation">-</span>pods<span class="token punctuation">-</span>label
+  <span class="token comment"># ---포드 정의---</span>
+  <span class="token key atrule">template</span><span class="token punctuation">:</span>
+    <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+      <span class="token key atrule">name</span><span class="token punctuation">:</span> my<span class="token punctuation">-</span>nginx<span class="token punctuation">-</span>pod
+      <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+        <span class="token key atrule">app</span><span class="token punctuation">:</span> my<span class="token punctuation">-</span>nginx<span class="token punctuation">-</span>pods<span class="token punctuation">-</span>label
+    <span class="token key atrule">spec</span><span class="token punctuation">:</span>
+      <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> nginx
+          <span class="token key atrule">image</span><span class="token punctuation">:</span> nginx<span class="token punctuation">:</span>latest
+          <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+            <span class="token punctuation">-</span> <span class="token key atrule">containerPort</span><span class="token punctuation">:</span> <span class="token number">80</span>
+</code></pre></div><ul><li><strong>spec.selector.matchLabels</strong>를 통해 생성해야 하는 포드를 찾음</li> <li>즉 <code>app: my-nginx-pods-label</code> 라벨을 가지는 포드의 개수가 replicas 항목에 정의된 숫자와 일치하지 않으면 포드 템플릿으로 포드 생성</li></ul> <h1 id="deployment"><a href="#deployment" class="header-anchor">#</a> Deployment</h1> <ul><li>레플리카셋, 포드의 배포를 관리</li> <li>실제 쿠버네티스 운영환경에서는 레플리카셋과 포드의 정보를 정의하는 <code>Deployment</code>라는 오브젝트를 정의해 사용</li> <li>디플로이먼트는 레플리카셋의 상위 오브젝트
+→ 디플로이언트를 생성하면 해당 디플로이먼트에 대응하는 레플리카셋도 함께 생성됨</li></ul> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apps/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Deployment
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> my<span class="token punctuation">-</span>nginx<span class="token punctuation">-</span>deployment
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">3</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">matchLabels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">app</span><span class="token punctuation">:</span> my<span class="token punctuation">-</span>nginx
+  <span class="token key atrule">template</span><span class="token punctuation">:</span>
+    <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+      <span class="token key atrule">name</span><span class="token punctuation">:</span> my<span class="token punctuation">-</span>nginx<span class="token punctuation">-</span>pod
+      <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+        <span class="token key atrule">app</span><span class="token punctuation">:</span> my<span class="token punctuation">-</span>nginx
+    <span class="token key atrule">spec</span><span class="token punctuation">:</span>
+      <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> nginx
+          <span class="token key atrule">image</span><span class="token punctuation">:</span> nginx<span class="token punctuation">:</span>latest
+          <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+            <span class="token punctuation">-</span> <span class="token key atrule">containerPort</span><span class="token punctuation">:</span> <span class="token number">80</span>
+</code></pre></div><ul><li>디플로이먼트, 레플리카 셋, 포드가 함께 생성되는 모습</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code>$ kubectl get deployment
+NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
+my-nginx-deployment   <span class="token number">3</span>/3     <span class="token number">3</span>            <span class="token number">3</span>           21s
+
+$ kubectl get replicaset
+NAME                            DESIRED   CURRENT   READY   AGE
+my-nginx-deployment-9b459b4c5   <span class="token number">3</span>         <span class="token number">3</span>         <span class="token number">3</span>       26s
+
+$ kubectl get pods
+NAME                                  READY   STATUS    RESTARTS   AGE
+my-nginx-deployment-9b459b4c5-cst47   <span class="token number">1</span>/1     Running   <span class="token number">0</span>          98s
+my-nginx-deployment-9b459b4c5-gzwtc   <span class="token number">1</span>/1     Running   <span class="token number">0</span>          98s
+my-nginx-deployment-9b459b4c5-lpklh   <span class="token number">1</span>/1     Running   <span class="token number">0</span>          98s
+</code></pre></div><h2 id="디플로이먼트를-사용하는-이유"><a href="#디플로이먼트를-사용하는-이유" class="header-anchor">#</a> 디플로이먼트를 사용하는 이유?</h2> <ul><li>애플리케이션의 업데이트와 배포를 더욱 편하기 만들기 위함
+<ul><li>애플리케이션 업데이트 시 레플리카 셋의 변경 사항을 관리하는 revision을 남겨 롤백을 가능하게 해줌</li> <li>무중단 서비스를 위해 포드의 롤링 업데이트 전략을 지정할 수 있음</li></ul></li> <li>ex : <code>--record</code> 옵션 사용</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code>$ kubectl apply <span class="token parameter variable">-f</span> deployment-nginx.yaml <span class="token parameter variable">--record</span> <span class="token comment"># --record 옵션으로 이전 정보를 리비전으로써 보존</span>
+Flag <span class="token parameter variable">--record</span> has been deprecated, <span class="token parameter variable">--record</span> will be removed <span class="token keyword">in</span> the future
+deployment.apps/my-nginx-deployment created
+
+$ kubectl <span class="token builtin class-name">set</span> image deployment my-nginx-deployment <span class="token assign-left variable">nginx</span><span class="token operator">=</span>nginx:1.11 <span class="token parameter variable">--record</span> <span class="token comment"># 이미지 변경</span>
+Flag <span class="token parameter variable">--record</span> has been deprecated, <span class="token parameter variable">--record</span> will be removed <span class="token keyword">in</span> the future
+deployment.apps/my-nginx-deployment image updated
+
+$ kubectl get rs <span class="token comment"># 오류 발생</span>
+NAME                             DESIRED   CURRENT   READY   AGE
+my-nginx-deployment-759b76bcd5   <span class="token number">2</span>         <span class="token number">2</span>         <span class="token number">0</span>       60s
+my-nginx-deployment-9b459b4c5    <span class="token number">2</span>         <span class="token number">2</span>         <span class="token number">2</span>       99s
+
+$ kubectl get pods <span class="token comment"># 오류 발생</span>
+NAME                                   READY   STATUS             RESTARTS      AGE
+my-nginx-deployment-759b76bcd5-4jccd   <span class="token number">0</span>/1     CrashLoopBackOff   <span class="token number">4</span> <span class="token punctuation">(</span>29s ago<span class="token punctuation">)</span>   119s
+my-nginx-deployment-759b76bcd5-vk9ck   <span class="token number">0</span>/1     CrashLoopBackOff   <span class="token number">3</span> <span class="token punctuation">(</span>48s ago<span class="token punctuation">)</span>   97s
+my-nginx-deployment-9b459b4c5-n29cz    <span class="token number">1</span>/1     Running            <span class="token number">0</span>             2m38s
+my-nginx-deployment-9b459b4c5-v4sq8    <span class="token number">1</span>/1     Running            <span class="token number">0</span>             2m38s
+
+$ kubectl rollout <span class="token function">history</span> deployment my-nginx-deployment <span class="token comment"># 리비전 확인</span>
+deployment.apps/my-nginx-deployment
+REVISION  CHANGE-CAUSE
+<span class="token number">1</span>         kubectl apply <span class="token parameter variable">--filename</span><span class="token operator">=</span>deployment-nginx.yaml <span class="token parameter variable">--record</span><span class="token operator">=</span>true
+<span class="token number">2</span>         kubectl <span class="token builtin class-name">set</span> image deployment my-nginx-deployment <span class="token assign-left variable">nginx</span><span class="token operator">=</span>nginx:1.11 <span class="token parameter variable">--record</span><span class="token operator">=</span>true
+
+$ kubectl rollout undo deployment my-nginx-deployment --to-revision<span class="token operator">=</span><span class="token number">1</span> <span class="token comment"># 리비전 1로 롤백</span>
+deployment.apps/my-nginx-deployment rolled back
+
+$ kubectl get rs <span class="token comment"># 롤백 완료</span>
+NAME                             DESIRED   CURRENT   READY   AGE
+my-nginx-deployment-759b76bcd5   <span class="token number">0</span>         <span class="token number">0</span>         <span class="token number">0</span>       2m36s
+my-nginx-deployment-9b459b4c5    <span class="token number">3</span>         <span class="token number">3</span>         <span class="token number">3</span>       3m15s
+
+$ kubectl get pods <span class="token comment"># 롤백 완료</span>
+NAME                                  READY   STATUS    RESTARTS   AGE
+my-nginx-deployment-9b459b4c5-7xcbx   <span class="token number">1</span>/1     Running   <span class="token number">0</span>          11s
+my-nginx-deployment-9b459b4c5-n29cz   <span class="token number">1</span>/1     Running   <span class="token number">0</span>          3m21s
+my-nginx-deployment-9b459b4c5-v4sq8   <span class="token number">1</span>/1     Running   <span class="token number">0</span>          3m21s
+</code></pre></div><h1 id="service"><a href="#service" class="header-anchor">#</a> Service</h1> <ul><li>포드를 연결하고 외부에 노출하는 역할</li> <li>기존에 <code>kubectl describe</code> 명령어로 확인한 포드 내부 IP는 클러스터 내부에서만 접근 가능 + 영속적이지 않음</li> <li>서비스는 포드에 접근하기 위한 규칙을 정의
+<ul><li>여러 개의 포드에 쉽게 접근할 수 있도록 고유한 도메인 네임 부여</li> <li>여러 개의 포드에 접근할 때, 요청을 분산하는 로드 밸런서 기능</li> <li>포드를 외부로 노출</li></ul></li></ul> <h2 id="서비스-종류"><a href="#서비스-종류" class="header-anchor">#</a> 서비스 종류</h2> <ul><li><strong>ClusterIP 타입</strong> : 쿠버네티스 내부에서만 포드들에 접근할 때 사용. 외부로 포드를 노출하지 않고 쿠버네티스 클러스터 내부에서만 사용되는 포드에 적합</li> <li><strong>NodePort 타입</strong> : 포드에 접근할 수 있는 포트를 클러스터의 모든 노드에 동일하게 개방. 외부에서 포드에 접근 가능. 접근 포트는 랜덤으로 정해지지만 특정 포트로 접근하도록 설정도 가능</li> <li><strong>LordBalancer 타입</strong> : 클라우드 플랫폼(AWS, GCP 등)에서 제공하는 로드 밸런서를 동적으로 프로비저닝해 포드에 연결. NodePort 타입과 마찬가지로 외부에서 포드에 접근 가능. 일반적으로 클라우드 플랫폼 환경에서만 사용 가능</li></ul> <h2 id="clusterip"><a href="#clusterip" class="header-anchor">#</a> ClusterIP</h2> <h3 id="deployment-2"><a href="#deployment-2" class="header-anchor">#</a> Deployment</h3> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apps/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Deployment
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> hostname<span class="token punctuation">-</span>deployment
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">3</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">matchLabels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">app</span><span class="token punctuation">:</span> webserver
+  <span class="token key atrule">template</span><span class="token punctuation">:</span>
+    <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+      <span class="token key atrule">name</span><span class="token punctuation">:</span> my<span class="token punctuation">-</span>webserver
+      <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+        <span class="token key atrule">app</span><span class="token punctuation">:</span> webserver
+    <span class="token key atrule">spec</span><span class="token punctuation">:</span>
+      <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> my<span class="token punctuation">-</span>webserver
+          <span class="token key atrule">image</span><span class="token punctuation">:</span> alicek106/rr<span class="token punctuation">-</span>test<span class="token punctuation">:</span>echo<span class="token punctuation">-</span>hostname
+          <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+            <span class="token punctuation">-</span> <span class="token key atrule">containerPort</span><span class="token punctuation">:</span> <span class="token number">80</span>
+</code></pre></div><h3 id="service-2"><a href="#service-2" class="header-anchor">#</a> Service</h3> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Service
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> hostname<span class="token punctuation">-</span>svc<span class="token punctuation">-</span>clusterip
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> web<span class="token punctuation">-</span>port
+      <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8080</span>
+      <span class="token key atrule">targetPort</span><span class="token punctuation">:</span> <span class="token number">80</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">app</span><span class="token punctuation">:</span> webserver
+  <span class="token key atrule">type</span><span class="token punctuation">:</span> ClusterIP
+</code></pre></div><ul><li><code>webserver</code>라는 라벨을 가진 포드들을 8080 → 80 으로 바인딩</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code>$ kubectl get svc
+NAME                     TYPE        CLUSTER-IP     EXTERNAL-IP   PORT<span class="token punctuation">(</span>S<span class="token punctuation">)</span>    AGE
+hostname-svc-clusterip   ClusterIP   <span class="token number">10.43</span>.49.255   <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>        <span class="token number">8080</span>/TCP   2m54s
+
+$ kubectl run <span class="token parameter variable">-i</span> <span class="token parameter variable">--tty</span> <span class="token parameter variable">--rm</span> debug <span class="token parameter variable">--image</span><span class="token operator">=</span>alicek106/ubuntu:curl <span class="token parameter variable">--restart</span><span class="token operator">=</span>Nev
+er -- <span class="token function">bash</span>
+
+<span class="token punctuation">..</span>.
+
+root@debug:/<span class="token comment"># curl 10.43.49.255:8080 --silent | grep Hello</span>
+    <span class="token operator">&lt;</span>p<span class="token operator">&gt;</span>Hello, hostname-deployment-96df6b9c4-t5lpr<span class="token operator">&lt;</span>/p<span class="token operator">&gt;</span>
+root@debug:/<span class="token comment"># curl hostname-svc-clusterip:8080 --silent | grep Hello</span>
+    <span class="token operator">&lt;</span>p<span class="token operator">&gt;</span>Hello, hostname-deployment-96df6b9c4-w4pfb<span class="token operator">&lt;</span>/p<span class="token operator">&gt;</span>
+</code></pre></div><ul><li>위와 같이 클러스터 내의 임시 포드를 만들어 요청을 전송해볼 수 있음</li> <li>IP 뿐만 아니라 서비스 이름 그 자체로도 접근 가능</li> <li>여러 포드가 클러스터 내부에서 서로를 찾아 연결할 때는 서비스의 이름과 같은 도메인 이름을 사용하는 것이 일반적</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code>root@debug:/<span class="token comment"># curl hostname-svc-clusterip:8080 --silent | grep Hello</span>
+    <span class="token operator">&lt;</span>p<span class="token operator">&gt;</span>Hello, hostname-deployment-96df6b9c4-w4pfb<span class="token operator">&lt;</span>/p<span class="token operator">&gt;</span>
+root@debug:/<span class="token comment"># curl hostname-svc-clusterip:8080 --silent | grep Hello</span>
+    <span class="token operator">&lt;</span>p<span class="token operator">&gt;</span>Hello, hostname-deployment-96df6b9c4-t5lpr<span class="token operator">&lt;</span>/p<span class="token operator">&gt;</span>
+root@debug:/<span class="token comment"># curl hostname-svc-clusterip:8080 --silent | grep Hello</span>
+    <span class="token operator">&lt;</span>p<span class="token operator">&gt;</span>Hello, hostname-deployment-96df6b9c4-zf8q<span class="token operator"><span class="token file-descriptor important">2</span>&lt;</span>/p<span class="token operator">&gt;</span>
+</code></pre></div><ul><li>서비스는 연결된 포드들에 대해 자동으로 로드 밸런싱 수행</li></ul> <h3 id="endpoint"><a href="#endpoint" class="header-anchor">#</a> endpoint</h3> <div class="language-bash extra-class"><pre class="language-bash"><code>$ kubectl get svc
+NAME                     TYPE        CLUSTER-IP     EXTERNAL-IP   PORT<span class="token punctuation">(</span>S<span class="token punctuation">)</span>    AGE
+hostname-svc-clusterip   ClusterIP   <span class="token number">10.43</span>.49.255   <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>        <span class="token number">8080</span>/TCP   11m
+
+$ kubectl get endpoints
+Warning: v1 Endpoints is deprecated <span class="token keyword">in</span> v1.33+<span class="token punctuation">;</span> use discovery.k8s.io/v1 EndpointSlice
+NAME                     ENDPOINTS                                      AGE
+hostname-svc-clusterip   <span class="token number">10.42</span>.0.144:80,10.42.0.145:80,10.42.0.146:80   11m
+kubernetes               <span class="token number">192.168</span>.0.7:6443                               25d
+</code></pre></div><ul><li>서비스의 라벨 셀렉터와 포드의 라벨이 매칭되어 연결되면 자동으로 <strong>엔드포인트</strong>라는 오브젝트가 생성됨</li></ul> <h2 id="nodeport"><a href="#nodeport" class="header-anchor">#</a> NodePort</h2> <ul><li>모든 노드의 특정 포트를 개방해 서비스에 접근하는 방식</li></ul> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Service
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> hostname<span class="token punctuation">-</span>svc<span class="token punctuation">-</span>nodeport
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> web<span class="token punctuation">-</span>port
+      <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8080</span>
+      <span class="token key atrule">targetPort</span><span class="token punctuation">:</span> <span class="token number">80</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">app</span><span class="token punctuation">:</span> webserver
+  <span class="token key atrule">type</span><span class="token punctuation">:</span> NodePort
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code>$ kubectl get svc
+NAME                    TYPE        CLUSTER-IP     EXTERNAL-IP   PORT<span class="token punctuation">(</span>S<span class="token punctuation">)</span>          AGE
+hostname-svc-nodeport   NodePort    <span class="token number">10.43</span>.36.241   <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>        <span class="token number">8080</span>:31294/TCP   4s
+</code></pre></div><ul><li>clusterip 때 처럼 CLUSTER-IP에 내부 IP가 할당됨 → NodePort 타입의 서비스가 ClusterIP의 기능을 포함하고 있기 때문</li> <li>하지만 실제 운영 환경에서 NodePort로 서비스를 외부에 제공하는 경우는 많지 않음
+<ul><li>포트 번호를 80, 443 으로 설정하기엔 적절하지 않음(기본적으로 NodePort)가 사용할 수 있는 포트 범위는 30000~32768</li> <li>tls 인증서 적용, 라우팅 등과 같은 복잡한 설정을 서비스에 적용하기 어렵</li></ul></li> <li>대신 인그레스라는 오브젝트를 통해 간접적으로 사용</li></ul> <h3 id="sessionaffinity"><a href="#sessionaffinity" class="header-anchor">#</a> sessionAffinity</h3> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token punctuation">---</span>
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">sessionAffinity</span><span class="token punctuation">:</span> ClientIP
+</code></pre></div><ul><li>sessinAffinity 설정으로 Sticky Session 기능 적용 가능</li> <li>특정 클라이언트의 요청이 같은 Pod에서만 처리되게 할 수 있음</li></ul> <h3 id="externaltrafficpolicy"><a href="#externaltrafficpolicy" class="header-anchor">#</a> externalTrafficPolicy</h3> <p><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&amp;fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2Fc6FU0N%2FbtqN2WbMU93%2FAAAAAAAAAAAAAAAAAAAAAEcPxm_j3rhohB6YFlq2BiBFtdmbyPzFq3L2V9ogIMRR%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1761922799%26allow_ip%3D%26allow_referer%3D%26signature%3DcZjvnzKh%252Bep5Jk4LQVbKN9joDPM%253D" alt=""></p> <ul><li>NodePort, LoadBalancer 타입의 서비스를 사용하면 각 워커 노드로 들어온 요청이 포드 중 하나로 전달됨</li> <li>하지만 위 그림과 같이 워커0으로 들어온 요청이 다시 워커1의 포드로 전달되는 경우
+<ul><li>불필요한 네트워크 홉이 발생함</li> <li>노드 간의 리다이렉트가 발생하게 되어 트래픽의 출발지 주소가 바뀜 → 클라이언트의 IP 주소가 보존되지 않음</li></ul></li> <li>이는 <code>externalTrafficPolicy</code>가 <code>Cluster</code>로 설정되어 있기 때문</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code>$ kubectl get svc hostname-svc-nodeport <span class="token parameter variable">-o</span> yaml
+apiVersion: v1
+kind: Service
+<span class="token punctuation">..</span>.
+spec:
+  externalTrafficPolicy: Cluster
+<span class="token punctuation">..</span>.
+</code></pre></div><ul><li>이를 방지하기 위해 externalTrafficPolicy를 <code>Local</code>로 설정 가능 → 포드가 생성된 노드에서만 포드로 접근 가능</li> <li>그럼 접근한 노드에 포드가 없으면?
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&amp;fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FbUj9EV%2FbtqNYwkGAOF%2FAAAAAAAAAAAAAAAAAAAAAOnlPmAZ4Y1mwXWHIcNmdG05yyBJ8ORWIj12hKp8c5UU%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1761922799%26allow_ip%3D%26allow_referer%3D%26signature%3DFAmgALsZjhWzTFBpQvQkU5mSnLg%253D" alt=""></li> <li>요청 처리 실패함</li></ul> <p>결론
+if 불필요한 네트워크 홉으로 인한 레이턴시나 클라이언트의 IP 보존이 중요하지 않음
+→ Cluster
+else
+→ Local</p> <h3 id="externalname"><a href="#externalname" class="header-anchor">#</a> ExternalName</h3> <ul><li>ExternalName 타입을 사용해 서비스를 생성하면 서비스가 외부 도메인을 가리키도록 설정할 수 있음</li></ul> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Service
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> externalname<span class="token punctuation">-</span>svc
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">type</span><span class="token punctuation">:</span> ExternalName
+  <span class="token key atrule">externalName</span><span class="token punctuation">:</span> my.database.com
+</code></pre></div><table><thead><tr><th>사용하는 도메인 이름</th> <th>변환되는 주소</th></tr></thead> <tbody><tr><td>externalname-svc</td> <td>my.database.com</td></tr></tbody></table></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/TIL/PS/펜윅트리.html" class="prev">
+        펜윅트리
+      </a></span> <span class="next"><a href="/TIL/Kubernetes/2.-네임스페이스,-컨피그맵,-시크릿,-인그레스.html">
+        2. 네임스페이스, 컨피그맵, 시크릿, 인그레스
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/TIL/assets/js/app.03d6d295.js" defer></script><script src="/TIL/assets/js/2.188c950f.js" defer></script><script src="/TIL/assets/js/1.a1e51968.js" defer></script><script src="/TIL/assets/js/58.6a53af05.js" defer></script>
+  </body>
+</html>
