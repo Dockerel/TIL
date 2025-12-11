@@ -55,4 +55,5 @@ exports.KubernetesList = [
   "Kubernetes/2.-네임스페이스,-컨피그맵,-시크릿,-인그레스.md",
   "Kubernetes/3.-pv와-pvc.md",
   "Kubernetes/4.-ServiceAccount와-RBAC.md",
+  "Kubernetes/5.-커스텀-리소스,-컨트롤러,-잡,-데몬셋,-스테이트풀셋.md",
 ];
