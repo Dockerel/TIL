@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>커스텀 리소스, 컨트롤러, 잡, 데몬셋, 스테이트풀셋 | Today Dockerel Learned</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="/TIL/logo.png">
+    <meta name="description" content="Dockerel&#39;s Personal Wiki (Today I Learned)">
+    
+    <link rel="preload" href="/TIL/assets/css/0.styles.40dd5a95.css" as="style"><link rel="preload" href="/TIL/assets/js/app.109600fd.js" as="script"><link rel="preload" href="/TIL/assets/js/2.188c950f.js" as="script"><link rel="preload" href="/TIL/assets/js/1.a1e51968.js" as="script"><link rel="preload" href="/TIL/assets/js/63.ead59cf3.js" as="script"><link rel="prefetch" href="/TIL/assets/js/10.e6f03b60.js"><link rel="prefetch" href="/TIL/assets/js/11.0fba4bf3.js"><link rel="prefetch" href="/TIL/assets/js/12.181bd7bc.js"><link rel="prefetch" href="/TIL/assets/js/13.c5707e1c.js"><link rel="prefetch" href="/TIL/assets/js/14.b086a433.js"><link rel="prefetch" href="/TIL/assets/js/15.3e75d743.js"><link rel="prefetch" href="/TIL/assets/js/16.a2bc07a8.js"><link rel="prefetch" href="/TIL/assets/js/17.a89eb525.js"><link rel="prefetch" href="/TIL/assets/js/18.c240daa0.js"><link rel="prefetch" href="/TIL/assets/js/19.60958448.js"><link rel="prefetch" href="/TIL/assets/js/20.4352d5d9.js"><link rel="prefetch" href="/TIL/assets/js/21.391074bf.js"><link rel="prefetch" href="/TIL/assets/js/22.664a6cc8.js"><link rel="prefetch" href="/TIL/assets/js/23.5ae71a00.js"><link rel="prefetch" href="/TIL/assets/js/24.ec738009.js"><link rel="prefetch" href="/TIL/assets/js/25.1aeaac43.js"><link rel="prefetch" href="/TIL/assets/js/26.e647db76.js"><link rel="prefetch" href="/TIL/assets/js/27.96954a7a.js"><link rel="prefetch" href="/TIL/assets/js/28.d3b9c4c7.js"><link rel="prefetch" href="/TIL/assets/js/29.fd8ebbf7.js"><link rel="prefetch" href="/TIL/assets/js/3.e9de9cb1.js"><link rel="prefetch" href="/TIL/assets/js/30.65f78cc4.js"><link rel="prefetch" href="/TIL/assets/js/31.a8dbce6a.js"><link rel="prefetch" href="/TIL/assets/js/32.5fd280ec.js"><link rel="prefetch" href="/TIL/assets/js/33.63e1b001.js"><link rel="prefetch" href="/TIL/assets/js/34.03a9f39d.js"><link rel="prefetch" href="/TIL/assets/js/35.4f98b8f2.js"><link rel="prefetch" href="/TIL/assets/js/36.15e8adcb.js"><link rel="prefetch" href="/TIL/assets/js/37.1e93f6b6.js"><link rel="prefetch" href="/TIL/assets/js/38.610f7bb8.js"><link rel="prefetch" href="/TIL/assets/js/39.46da3c64.js"><link rel="prefetch" href="/TIL/assets/js/4.c5b6f970.js"><link rel="prefetch" href="/TIL/assets/js/40.2d44ac62.js"><link rel="prefetch" href="/TIL/assets/js/41.5d4d9c9e.js"><link rel="prefetch" href="/TIL/assets/js/42.1602bec9.js"><link rel="prefetch" href="/TIL/assets/js/43.ed44001c.js"><link rel="prefetch" href="/TIL/assets/js/44.a29595e6.js"><link rel="prefetch" href="/TIL/assets/js/45.9d19a39c.js"><link rel="prefetch" href="/TIL/assets/js/46.ce0941a8.js"><link rel="prefetch" href="/TIL/assets/js/47.701151aa.js"><link rel="prefetch" href="/TIL/assets/js/48.f30e81d6.js"><link rel="prefetch" href="/TIL/assets/js/49.fbb6c313.js"><link rel="prefetch" href="/TIL/assets/js/5.5e20f558.js"><link rel="prefetch" href="/TIL/assets/js/50.3e44bb02.js"><link rel="prefetch" href="/TIL/assets/js/51.99ae272d.js"><link rel="prefetch" href="/TIL/assets/js/52.cc562289.js"><link rel="prefetch" href="/TIL/assets/js/53.6df45cf5.js"><link rel="prefetch" href="/TIL/assets/js/54.ee3bf81e.js"><link rel="prefetch" href="/TIL/assets/js/55.c7ec5753.js"><link rel="prefetch" href="/TIL/assets/js/56.03d1f002.js"><link rel="prefetch" href="/TIL/assets/js/57.bd1a5145.js"><link rel="prefetch" href="/TIL/assets/js/58.72096ec4.js"><link rel="prefetch" href="/TIL/assets/js/59.d3c9cdcb.js"><link rel="prefetch" href="/TIL/assets/js/6.e8a6e3a8.js"><link rel="prefetch" href="/TIL/assets/js/60.c53ac1c7.js"><link rel="prefetch" href="/TIL/assets/js/61.3b46f4ca.js"><link rel="prefetch" href="/TIL/assets/js/62.9c4ed0d5.js"><link rel="prefetch" href="/TIL/assets/js/64.fa9a760f.js"><link rel="prefetch" href="/TIL/assets/js/65.66a5ec6f.js"><link rel="prefetch" href="/TIL/assets/js/66.d119a824.js"><link rel="prefetch" href="/TIL/assets/js/67.fda1feac.js"><link rel="prefetch" href="/TIL/assets/js/7.7fea5211.js"><link rel="prefetch" href="/TIL/assets/js/vendors~docsearch.68e379d9.js">
+    <link rel="stylesheet" href="/TIL/assets/css/0.styles.40dd5a95.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/TIL/" class="home-link router-link-active"><!----> <span class="site-name">Today Dockerel Learned</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="https://github.com/Dockerel/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://dockerel.tistory.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Blog
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="https://github.com/Dockerel/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://dockerel.tistory.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Blog
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Backend</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>DomainDrivenArchitecture</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Java</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>OperatingSystem</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>PS</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Kubernetes</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/TIL/Kubernetes/1.-포드,-레플리카-셋,-디플로이먼트,-서비스.html" class="sidebar-link">1.포드, 레플리카 셋, 디플로이먼트, 서비스</a></li><li><a href="/TIL/Kubernetes/2.-네임스페이스,-컨피그맵,-시크릿,-인그레스.html" class="sidebar-link">2. 네임스페이스, 컨피그맵, 시크릿, 인그레스</a></li><li><a href="/TIL/Kubernetes/3.-pv와-pvc.html" class="sidebar-link">3. PV와 PVC</a></li><li><a href="/TIL/Kubernetes/4.-ServiceAccount와-RBAC.html" class="sidebar-link">4. ServiceAccount와 RBAC</a></li><li><a href="/TIL/Kubernetes/5.-커스텀-리소스,-컨트롤러,-잡,-데몬셋,-스테이트풀셋.html" class="active sidebar-link">커스텀 리소스, 컨트롤러, 잡, 데몬셋, 스테이트풀셋</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/TIL/Kubernetes/5.-커스텀-리소스,-컨트롤러,-잡,-데몬셋,-스테이트풀셋.html#커스텀-리소스" class="sidebar-link">커스텀 리소스</a></li><li class="sidebar-sub-header"><a href="/TIL/Kubernetes/5.-커스텀-리소스,-컨트롤러,-잡,-데몬셋,-스테이트풀셋.html#쿠버네티스-컨트롤러" class="sidebar-link">쿠버네티스 컨트롤러</a></li><li class="sidebar-sub-header"><a href="/TIL/Kubernetes/5.-커스텀-리소스,-컨트롤러,-잡,-데몬셋,-스테이트풀셋.html#잡" class="sidebar-link">잡</a></li><li class="sidebar-sub-header"><a href="/TIL/Kubernetes/5.-커스텀-리소스,-컨트롤러,-잡,-데몬셋,-스테이트풀셋.html#데몬셋" class="sidebar-link">데몬셋</a></li><li class="sidebar-sub-header"><a href="/TIL/Kubernetes/5.-커스텀-리소스,-컨트롤러,-잡,-데몬셋,-스테이트풀셋.html#스테이트풀셋" class="sidebar-link">스테이트풀셋</a></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="커스텀-리소스-컨트롤러-잡-데몬셋-스테이트풀셋"><a href="#커스텀-리소스-컨트롤러-잡-데몬셋-스테이트풀셋" class="header-anchor">#</a> 커스텀 리소스, 컨트롤러, 잡, 데몬셋, 스테이트풀셋</h1> <h2 id="커스텀-리소스"><a href="#커스텀-리소스" class="header-anchor">#</a> 커스텀 리소스</h2> <ul><li>쿠버네티스에서 자체적으로 제공하는 리소스 외에 직접 정의해 사용할 수 있는 리소스</li> <li>커스텀 리소스를 제대로 사용하려면 컨트롤러라는 별도 컴포넌트를 이해하고 구현할 수 있어야 함</li></ul> <blockquote><h2 id="쿠버네티스-컨트롤러"><a href="#쿠버네티스-컨트롤러" class="header-anchor">#</a> 쿠버네티스 컨트롤러</h2> <ul><li>도커와 쿠버네티스는 리소스를 생성하는 방식이 다름
+<ul><li>도커 : <code>docker run</code>처럼 특정 명령을 처리하는 주체와 통신해 그 작업을 수행하고 그 결괏값을 돌려 받는 방식 (<strong>명령형</strong>)</li> <li>쿠버네티스 : <code>kubectl apply</code>처럼 최종적으로 도달해야 하는 상태(바람직한 상태, Desired State)를 정의한 뒤, 현재 상태가 바람직한 상태와 다를 경우 이를 일치시키는 방법 (<strong>선언형</strong>)</li></ul></li> <li>선언형 사용 시 최종적으로 완성되어야 하는 상태가 되기 위해 어떠한 동작을 하는지는 쿠버네티스에서 <strong>컨트롤러</strong>가 내부적으로 결정</li> <li>이때 상태는 <strong>etcd</strong>에 저장되어 있으며, 컨트롤러는 쿠버네티스 API 서버의 <strong>Watch API</strong>를 통해 etcd에 저장된 상태를 받아와 동작 수행
+<ul><li><strong>etcd</strong> : 클러스터 상태와 설정을 저장하는 오픈소스 분산 키-값 저장소</li> <li><strong>Watch API</strong> : 리소스의 생성, 수정, 삭제 같은 변경 이벤트를 클라이언트나 다른 컨트롤러에게 실시간으로 알려주는 기능</li></ul></li></ul></blockquote> <ul><li>커스텀 리소스는 직접 정의해 사용할 수 있는 사용자 정의 리소스</li> <li>디플로이먼트, 서비스 등의 오브젝트의 묶음을 커스텀 리소스로 추상화 함으로써 쿠버네티스 리소스를 묶어 놓은 패키지처럼 사용할 수도 있음
+<img src="https://velog.velcdn.com/images/temporary23571/post/1f0cb2bb-902f-45a9-b41e-c2a216f993fe/image.PNG" alt=""></li> <li>위 그림과 같이 여러 리소스를 한번에 생성할 수 있고, 각 리소스의 생애 주기를 쉽게 관리 가능</li> <li>많은 관리의 복잡성을 줄일 수 있고, 오브젝트를 원하는 대로 확장해 사용 가능</li></ul> <h3 id="custom-resource-definition"><a href="#custom-resource-definition" class="header-anchor">#</a> Custom Resource Definition</h3> <ul><li>crd라 하며 <code>kubectl get crd</code> 명령어를 통해 목록 확인 가능</li> <li>커스텀 리소스를 정의하는 역할, crd 자체가 커스텀 리소스를 의미하는건 아님</li></ul> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apiextensions.k8s.io/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> CustomResourceDefinition
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> managedredises.cloud.com <span class="token comment"># CRD 이름</span>
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">group</span><span class="token punctuation">:</span> cloud.com
+  <span class="token key atrule">names</span><span class="token punctuation">:</span> <span class="token comment"># CR 이름</span>
+    <span class="token key atrule">kind</span><span class="token punctuation">:</span> ManagedRedis
+    <span class="token key atrule">plural</span><span class="token punctuation">:</span> managedredises
+    <span class="token key atrule">shortNames</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> mr
+    <span class="token key atrule">singular</span><span class="token punctuation">:</span> managedredis
+  <span class="token key atrule">scope</span><span class="token punctuation">:</span> Namespaced <span class="token comment"># 네임스페이스에 속하는지 여부</span>
+  <span class="token key atrule">versions</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> v1
+    <span class="token key atrule">schema</span><span class="token punctuation">:</span>
+      <span class="token key atrule">openAPIV3Schema</span><span class="token punctuation">:</span>
+        <span class="token key atrule">properties</span><span class="token punctuation">:</span>
+          <span class="token key atrule">spec</span><span class="token punctuation">:</span>
+            <span class="token key atrule">properties</span><span class="token punctuation">:</span>
+              <span class="token key atrule">image</span><span class="token punctuation">:</span>
+                <span class="token key atrule">description</span><span class="token punctuation">:</span> The image of Redis cluster
+                <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+              <span class="token key atrule">replica</span><span class="token punctuation">:</span>
+                <span class="token key atrule">description</span><span class="token punctuation">:</span> The number of Redis replica
+                <span class="token key atrule">type</span><span class="token punctuation">:</span> integer
+            <span class="token key atrule">required</span><span class="token punctuation">:</span> <span class="token comment"># 반드시 포함되어야 하는 spec 정의 부분</span>
+            <span class="token punctuation">-</span> replica
+            <span class="token punctuation">-</span> image
+            <span class="token key atrule">type</span><span class="token punctuation">:</span> object
+          <span class="token key atrule">status</span><span class="token punctuation">:</span> <span class="token comment"># 해당 CRD를 관리하는 컨트롤러에 의해 채워지는 현재 상태 정보</span>
+            <span class="token key atrule">properties</span><span class="token punctuation">:</span>
+              <span class="token key atrule">message</span><span class="token punctuation">:</span> <span class="token comment"># 현재 상태 설명</span>
+                <span class="token key atrule">description</span><span class="token punctuation">:</span> A descriptive message about the cluster's status.
+                <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+              <span class="token key atrule">phase</span><span class="token punctuation">:</span> <span class="token comment"># 현재 상태</span>
+                <span class="token key atrule">description</span><span class="token punctuation">:</span> The current phase of the Redis cluster (e.g.<span class="token punctuation">,</span> Pending<span class="token punctuation">,</span>
+                  Running<span class="token punctuation">,</span> Failed).
+                <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+              <span class="token key atrule">primary_endpoint</span><span class="token punctuation">:</span> <span class="token comment"># 쓰기 주소</span>
+                <span class="token key atrule">description</span><span class="token punctuation">:</span> The Redis cluster's primary connection endpoint for writing.
+                <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+              <span class="token key atrule">secondary_endpoint</span><span class="token punctuation">:</span> <span class="token comment"># 읽기 주소</span>
+                <span class="token key atrule">description</span><span class="token punctuation">:</span> The Redis cluster's secondary connection endpoint for
+                  reading.
+                <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+            <span class="token key atrule">type</span><span class="token punctuation">:</span> object
+            <span class="token key atrule">x-kubernetes-preserve-unknown-fields</span><span class="token punctuation">:</span> <span class="token boolean important">true</span> <span class="token comment"># CRD 스키마에서 알 수 없는(정의되지 않은) 필드를 허용</span>
+        <span class="token key atrule">type</span><span class="token punctuation">:</span> object
+    <span class="token key atrule">subresources</span><span class="token punctuation">:</span>
+      <span class="token key atrule">status</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+</code></pre></div><ul><li>위와 같이 crd를 정의하는 것 외에 특정 동작을 수행하는 컨트롤러를 정의해줘야 함
+<img src="https://mblogthumb-phinf.pstatic.net/MjAxOTA3MDdfMjY2/MDAxNTYyNDkzNzIyMTcx.Sp9daHGfe5zryLIeKWA-GD4Lo4VSn8qJubjA8RT-RLQg.PVs-5vLc2zmt_Pd0rk37FsOjX7LTzqjFoo0yNDUFJxog.JPEG.alice_k106/crd.jpg?type=w420" alt=""></li> <li>컨트롤러는 Watch API를 통해 새로운 CR이 생성되었다는 것을 갑지하고, CR이 원하는 바람직한 상태가 되도록 특정 동작 수행</li> <li>이러한 바람직한 상태가 되도록 특정 동작을 수행하는 것을 <strong>Reconcile</strong>이라 부름</li> <li>이렇게 일련의 동작을 통해 CRD를 사용할 수 있도록 컨트롤러를 구현하는 방법을 오퍼레이터(Operator) 패턴이라 부름</li></ul> <h2 id="잡"><a href="#잡" class="header-anchor">#</a> 잡</h2> <ul><li>잡(Job)은 특정 동작을 수행하고 종료해야 하는 작업을 위한 오브젝트</li> <li>잡에서 원하는 최종 상태는 <strong>포드가 실행되어 정상적으로 종료되는 것</strong></li></ul> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> batch/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Job
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> job<span class="token punctuation">-</span>hello<span class="token punctuation">-</span>world
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">template</span><span class="token punctuation">:</span>
+    <span class="token key atrule">spec</span><span class="token punctuation">:</span>
+      <span class="token key atrule">restartPolicy</span><span class="token punctuation">:</span> Never <span class="token comment"># OnFailure 설정 시 spec.backoffLimit으로 재시도 횟수 설정 가능 (기본적으로는 6번)</span>
+      <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">image</span><span class="token punctuation">:</span> busybox
+        <span class="token key atrule">args</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;sh&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;-c&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;echo Hello, World &amp;&amp; exit 0&quot;</span><span class="token punctuation">]</span>
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> job<span class="token punctuation">-</span>hello<span class="token punctuation">-</span>world
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> kubectl apply <span class="token parameter variable">-f</span> job-hello-world.yaml
+job.batch/job-hello-world created
+
+<span class="token operator">&gt;</span> kubectl get pods
+NAME                    READY   STATUS      RESTARTS   AGE
+job-hello-world-cj7lv   <span class="token number">0</span>/1     Completed   <span class="token number">0</span>          12s
+
+<span class="token operator">&gt;</span> kubectl get <span class="token function">jobs</span>
+NAME              STATUS     COMPLETIONS   DURATION   AGE
+job-hello-world   Complete   <span class="token number">1</span>/1           8s         9s
+</code></pre></div><ul><li>한 번 수행하고 종료되는 배치 작업에 사용됨</li> <li>잡은 동시성을 엄격하게 보장해야 하는 병렬 처리를 위해 사용하는 것이 아님</li> <li>restartPolicy에 의해 재시작될 수도 있어서 잡이 처리하는 작업은 멱등성을 가져야 함
+<ul><li><strong>멱등성</strong> : 첫 번째 수행을 한 뒤 여러 차례 적용해도 결과를 변경시키지 않는 작업 또는 기능의 속성</li></ul></li></ul> <h3 id="잡의-세부옵션"><a href="#잡의-세부옵션" class="header-anchor">#</a> 잡의 세부옵션</h3> <ul><li>spec.completions : 잡이 성공했다고 여겨지려면 몇 개의 포드가 성공해야 하는지</li> <li>spec.parallelism : 동시에 생성될 포드의 개수 (기본값은 1)</li> <li>spec.activeDeadlineSeconds : 포드가 실행될 수 있는 최대 시간. 더 오래 실행될 경우 강제로 종료되며, 잡은 실패함</li></ul> <h3 id="크론잡으로-잡을-주기적으로-실행하기"><a href="#크론잡으로-잡을-주기적으로-실행하기" class="header-anchor">#</a> 크론잡으로 잡을 주기적으로 실행하기</h3> <ul><li>잡을 주기적으로 실행하는 쿠버네티스 오브젝트</li></ul> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> batch/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> CronJob
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> cronjob<span class="token punctuation">-</span>ex
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">schedule</span><span class="token punctuation">:</span> <span class="token string">&quot;*/1 * * * *&quot;</span>
+  <span class="token key atrule">jobTemplate</span><span class="token punctuation">:</span>
+    <span class="token key atrule">spec</span><span class="token punctuation">:</span>
+      <span class="token key atrule">restartPolicy</span><span class="token punctuation">:</span> Never
+      <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">image</span><span class="token punctuation">:</span> busybox
+        <span class="token key atrule">args</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;sh&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;-c&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;echo Hello, World &amp;&amp; exit 0&quot;</span><span class="token punctuation">]</span>
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> job<span class="token punctuation">-</span>hello<span class="token punctuation">-</span>world
+</code></pre></div><ul><li>리눅스의 크론 스케줄 방법을 사용하여 정의 가능</li></ul> <h2 id="데몬셋"><a href="#데몬셋" class="header-anchor">#</a> 데몬셋</h2> <ul><li>데몬셋(DaemonSet)은 쿠버네티스의 모든 노드에 동일한 포드를 하나씩 생성하는 오브젝트</li> <li>로깅, 모니터링, 네트워킹 등을 위한 에이전트를 각 노드에 생성해야 할 때 사용</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> kubectl get daemonsets <span class="token parameter variable">-n</span> kube-system
+NAME         DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR            AGE
+kube-proxy   <span class="token number">1</span>         <span class="token number">1</span>         <span class="token number">1</span>       <span class="token number">1</span>            <span class="token number">1</span>           kubernetes.io/os<span class="token operator">=</span>linux   69d
+</code></pre></div><ul><li>쿠버네티스 네트워킹을 위한 kube-proxy 컴포넌트 등이 데몬셋으로 실행되고 있음</li></ul> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apps/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> DaemonSet
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> daemonset<span class="token punctuation">-</span>example
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">matchLabels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">name</span><span class="token punctuation">:</span> my<span class="token punctuation">-</span>daemonset<span class="token punctuation">-</span>example <span class="token comment"># 포드를 생성하기 위한 셀렉터</span>
+  <span class="token key atrule">template</span><span class="token punctuation">:</span>
+    <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+      <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> my<span class="token punctuation">-</span>daemonset<span class="token punctuation">-</span>example <span class="token comment"># 포드 라벨</span>
+    <span class="token key atrule">spec</span><span class="token punctuation">:</span>
+      <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> daemonset<span class="token punctuation">-</span>example
+        <span class="token key atrule">image</span><span class="token punctuation">:</span> busybox
+        <span class="token key atrule">args</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;tail&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;-f&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;/dev/null&quot;</span><span class="token punctuation">]</span>
+</code></pre></div><ul><li>특정 노드에만 데몬셋의 포드를 생성하고 싶다면 nodeSelector나 Node Affinity를 포드에 적용할 수도 있음</li></ul> <h2 id="스테이트풀셋"><a href="#스테이트풀셋" class="header-anchor">#</a> 스테이트풀셋</h2> <ul><li>쿠버네티스에서 MSA 구조로 동작하는 애플리케이션은 대부분 Stateless인 경우가 많음</li> <li>데이터베이스처럼 Stateful한 애플리케이션은 스테이트풀셋(StatefulSet)으로 관리 가능
+<img src="https://blog.kakaocdn.net/dna/1UODm/btq74auZKMp/AAAAAAAAAAAAAAAAAAAAAHiZAJi0KrWFATpI1f1YDRODK3LT0g7XGcRnZBL8GqFB/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&amp;expires=1767193199&amp;allow_ip=&amp;allow_referer=&amp;signature=60VeFuKpkJCJ8Ua2Vax6JsMlsBw%3D" alt=""></li></ul> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apps/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> StatefulSet
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> statefulset<span class="token punctuation">-</span>example
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">serviceName</span><span class="token punctuation">:</span> statefulset<span class="token punctuation">-</span>service
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">matchLabels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">name</span><span class="token punctuation">:</span> statefulset<span class="token punctuation">-</span>example
+  <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">3</span>
+  <span class="token key atrule">template</span><span class="token punctuation">:</span>
+    <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+      <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> statefulset<span class="token punctuation">-</span>example
+    <span class="token key atrule">spec</span><span class="token punctuation">:</span>
+      <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> statefulset<span class="token punctuation">-</span>example
+        <span class="token key atrule">image</span><span class="token punctuation">:</span> alicek106/rr<span class="token punctuation">-</span>test<span class="token punctuation">:</span>echo<span class="token punctuation">-</span>hostname
+        <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">containerPort</span><span class="token punctuation">:</span> <span class="token number">80</span>
+          <span class="token key atrule">name</span><span class="token punctuation">:</span> web
+
+<span class="token punctuation">---</span>
+
+<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Service
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> statefulset<span class="token punctuation">-</span>service
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+   <span class="token punctuation">-</span> <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">80</span>
+     <span class="token key atrule">name</span><span class="token punctuation">:</span> web
+  <span class="token key atrule">clusterIP</span><span class="token punctuation">:</span> None
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> statefulset<span class="token punctuation">-</span>example
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> kubectl apply <span class="token parameter variable">-f</span> statefulset-example.yaml
+statefulset.apps/statefulset-example created
+
+<span class="token operator">&gt;</span> kubectl get sts
+NAME                  READY   AGE
+statefulset-example   <span class="token number">3</span>/3     18s
+
+<span class="token operator">&gt;</span> kubectl get pods
+NAME                    READY   STATUS      RESTARTS   AGE
+job-hello-world-cj7lv   <span class="token number">0</span>/1     Completed   <span class="token number">0</span>          54m
+statefulset-example-0   <span class="token number">1</span>/1     Running     <span class="token number">0</span>          25s
+statefulset-example-1   <span class="token number">1</span>/1     Running     <span class="token number">0</span>          13s
+statefulset-example-2   <span class="token number">1</span>/1     Running     <span class="token number">0</span>          12s
+</code></pre></div><ul><li>포드에 랜덤한 이름이 아닌 고유한 이름이 붙혀짐</li> <li>spec.ServiceName을 정의하는 이유는 랜덤 포드가 아닌 개별 포드에 요청을 전달하기 위함
+<img src="https://blog.kakaocdn.net/dna/cJlbav/btq75DJQdWf/AAAAAAAAAAAAAAAAAAAAAFinXS3bvaaks7KG6bMaHMuX8wVRSGRyRYXphahoeGPr/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&amp;expires=1767193199&amp;allow_ip=&amp;allow_referer=&amp;signature=VXbWxJ2zfxgzfek4dKpYBNkYVCc%3D" alt=""></li> <li>각 포드는 고유하게 식별되어야 하며, 랜덤한 포드로 전달되는 동작은 스테이트풀셋이 원하는 동작이 아님</li> <li>이때 일반적인 서비스가 아닌 헤드리스 서비스 사용 가능</li></ul> <h3 id="헤드리스-서비스"><a href="#헤드리스-서비스" class="header-anchor">#</a> 헤드리스 서비스</h3> <ul><li>clusterIP의 항목이 None으로 되어 있음 → 헤드리스 서비스 의미</li> <li>로드 밸런싱을 수행하지 않고, 개별 파드에 직접 접근할 수 있는 경로를 제공하는 방식</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token operator">&gt;</span> kubectl run <span class="token parameter variable">-i</span> <span class="token parameter variable">--tty</span> <span class="token parameter variable">--image</span> busybox:1.28 debug <span class="token parameter variable">--restart</span><span class="token operator">=</span>Never <span class="token parameter variable">--rm</span> <span class="token punctuation">\</span>
+<span class="token operator">&gt;</span> <span class="token function">nslookup</span> statefulset-service
+Server:    <span class="token number">10.96</span>.0.10
+Address <span class="token number">1</span>: <span class="token number">10.96</span>.0.10 kube-dns.kube-system.svc.cluster.local
+
+Name:      statefulset-service
+Address <span class="token number">1</span>: <span class="token number">10.1</span>.1.186 statefulset-example-0.statefulset-service.default.svc.cluster.local
+Address <span class="token number">2</span>: <span class="token number">10.1</span>.1.188 statefulset-example-2.statefulset-service.default.svc.cluster.local
+Address <span class="token number">3</span>: <span class="token number">10.1</span>.1.187 statefulset-example-1.statefulset-service.default.svc.cluster.local
+</code></pre></div><ul><li>위와 같이 <code>&lt;포드의 이름&gt;.&lt;서비스 이름&gt;</code>을 통해서도 포드에 접근 가능</li> <li>포드의 데이터는 일반적으로 휘발성이기 때문에 스테이트풀셋에 PV를 마운트해서 데이터를 보존하는 것이 일반적임</li> <li>PVC를 정의해두고 다이나믹 프로비저닝으로 PV 자동 생성 방식도 사용 가능</li></ul></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/TIL/Kubernetes/4.-ServiceAccount와-RBAC.html" class="prev">
+        4. ServiceAccount와 RBAC
+      </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/TIL/assets/js/app.109600fd.js" defer></script><script src="/TIL/assets/js/2.188c950f.js" defer></script><script src="/TIL/assets/js/1.a1e51968.js" defer></script><script src="/TIL/assets/js/63.ead59cf3.js" defer></script>
+  </body>
+</html>
