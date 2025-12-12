@@ -35,6 +35,7 @@ exports.JavaList = [
   "Java/Object.md",
   "Java/Primitive-type과-Reference-Type.md",
   "Java/자바에서-클래스-정보-알아내는-법.md",
+  "Java/String-타입-캐스팅과-String.valueOf()-차이.md",
 ];
 
 exports.OperatingSystemList = [
