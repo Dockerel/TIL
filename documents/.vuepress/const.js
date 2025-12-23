@@ -13,6 +13,7 @@ exports.BackendList = [
   "Backend/의존성-주입.md",
   "Backend/스프링-트랜잭션-AOP의-동작-흐름.md",
   "Backend/동시성-문제-중-경쟁-상태를-해결하려면.md",
+  "Backend/가상화.md",
 ];
 
 exports.DomainDrivenArchitectureList = [
