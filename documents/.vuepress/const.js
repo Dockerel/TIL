@@ -38,6 +38,7 @@ exports.JavaList = [
   "Java/자바에서-클래스-정보-알아내는-법.md",
   "Java/String-타입-캐스팅과-String.valueOf()-차이.md",
   "Java/자바-프로그램이-실행되는-흐름.md",
+  "Java/JCF-자료구조의-초기-용량을-지정하면-좋은-점.md",
 ];
 
 exports.OperatingSystemList = [
