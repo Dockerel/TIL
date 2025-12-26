@@ -1,0 +1,13 @@
+title: "Dockerel TIL"
+description: "Dockerel TIL"
+author: "Dockerel"
+
+url: "https://dockerel.github.io"
+baseurl: "/TIL"
+
+markdown: kramdown
+permalink: /:year/:month/:day/:title/
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
