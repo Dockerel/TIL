@@ -28,6 +28,7 @@ exports.DomainDrivenArchitectureList = [
   "DomainDrivenArchitecture/7.-도메인-서비스.md",
   "DomainDrivenArchitecture/8.-애그리거트-트랜잭션-관리.md",
   "DomainDrivenArchitecture/9.-도메인-모델과-경계.md",
+  "DomainDrivenArchitecture/10.-이벤트.md",
 ];
 
 exports.JavaList = [
