@@ -15,6 +15,7 @@ exports.BackendList = [
   "Backend/동시성-문제-중-경쟁-상태를-해결하려면.md",
   "Backend/가상화.md",
   "Backend/RDB에서-페이징-쿼리의-필요성.md",
+  "Backend/CDN.md",
 ];
 
 exports.DomainDrivenArchitectureList = [
